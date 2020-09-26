@@ -70,6 +70,8 @@ ADD ./bashrc.mflasquin /home/mflasquin/.bashrc
 # =========================================
 # Create generic SSL certificate
 # =========================================
+RUN a2enmod rewrite
+RUN a2enmod headers
 RUN a2enmod ssl
 RUN a2ensite default-ssl
 RUN cd /etc/ssl/certs && openssl req -subj '/CN=mflasquin.local/O=MFlasquin/C=FR' -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem
