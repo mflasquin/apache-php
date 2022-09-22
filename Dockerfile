@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:7.4-apache
 LABEL maintainer="Maxime Flasquin contact@mflasquin.fr"
 
 # =========================================
@@ -14,6 +14,7 @@ RUN apt-get install -y libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
     libxslt1-dev \
+    libjpeg-dev \
     libzip-dev \
     sudo \
     libmagickwand-dev \
@@ -33,7 +34,7 @@ RUN apt-get install -y \
 # Configure the GD library
 # =========================================
 RUN docker-php-ext-configure \
-    gd --with-freetype --with-jpeg
+    gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/
 
 # =========================================
 # Install php required extensions
